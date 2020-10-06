@@ -18,6 +18,6 @@ export const ButtonContainer = styled.button`
   background: ${(p) => (p.background ? p.background : Colors.Green)};
   &:hover {
     cursor: pointer;
-    filter: drop-shadow(0px 0px 5px #FFFFFF);
+    filter: ${(p) => p.shadow && 'drop-shadow(0px 0px 5px #FFFFFF)'};
   };
 `

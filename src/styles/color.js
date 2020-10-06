@@ -3,10 +3,11 @@ export const Colors = {
   Black: "#181818",
   White: "#FFFFFF",
   DarkGray: "#1E1E1E",
+  MidGray: "#171817",
+  Gray: "#4f4f4f",
 
   Red: "#ef403d",
   Pink: "#FFD5D5",
-  Grey: "#CCCCCC",
   Gold: "#FADA83",
   Dark: "#000000",
   Navy: "#26235B",
