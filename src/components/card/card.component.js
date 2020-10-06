@@ -6,27 +6,30 @@ import { Colors } from '../../styles'
 const Card = (props) => {
   const {
     data,
+    detail,
     onViewDetail
   } = props
   return (
     <Container>
       <ImageContainer>
-        {data ? 
-        <Image src={data.Poster} alt="Logo" /> : 
-        <Loader width={'30vh'} height={'400px'}  />
+        {!data ? 
+        <Loader width={'30vh'} height={'400px'}  /> : 
+        data.Poster === "N/A" ? 
+        <Loader width={'30vh'} height={'400px'}  /> :
+        <Image onError={} src={data.Poster} alt="Logo" /> 
         }
-        <Hover>
+        {!detail && <Hover>
           <Background />
           <Wrapper>
             <Text align="left" size={20} bold>
               {data ? data.Type.toUpperCase() : ""}
             </Text>
             <Button
-              onClick={() => onViewDetail(data.imdbID || "")}
+              onClick={() => onViewDetail(data || "")}
               name={'View Detail'}
             ></Button>
           </Wrapper>
-        </Hover>
+        </Hover>}
       </ImageContainer>
       {data ? 
         <Text align="left" size={20} bold>
