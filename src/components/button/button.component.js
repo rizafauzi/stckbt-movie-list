@@ -3,6 +3,7 @@ import { ButtonContainer } from './button.style'
 
 const Button = (props) => {
   const {
+    color,
     onClick,
     background,
     shadow=false,
@@ -10,8 +11,9 @@ const Button = (props) => {
   } = props
   return (
     <ButtonContainer
-    shadow={shadow}
-    onClick={onClick}
+      color={color}
+      shadow={shadow}
+      onClick={onClick}
       background={background}
     >
       {name}

@@ -1,10 +1,11 @@
 export const Colors = {
+  Gray: "#4f4f4f",
   Green: "#05C572",
   Black: "#181818",
   White: "#FFFFFF",
-  DarkGray: "#1E1E1E",
   MidGray: "#171817",
-  Gray: "#4f4f4f",
+  DarkGray: "#1E1E1E",
+  SoftGray: "#808080",
 
   Red: "#ef403d",
   Pink: "#FFD5D5",

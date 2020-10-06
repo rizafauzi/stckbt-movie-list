@@ -1,14 +1,15 @@
 import React from 'react'
-import { Header } from './modal.style'
-import { Text } from '..'
+import { Container, Background, Wrapper } from './modal.style'
 
-const Modal = () => {
+const Modal = (props) => {
+  const { children } = props
   return (
-    <Header>
-      <Text align="left" size={18} bold>
-        User Access
-      </Text>
-    </Header>
+    <Container>
+      <Background />
+      <Wrapper>
+        {children}
+      </Wrapper>
+    </Container>
   )
 }
 

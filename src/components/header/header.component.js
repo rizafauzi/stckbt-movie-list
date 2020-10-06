@@ -1,6 +1,6 @@
 import React from 'react'
-import { Header, ButtonHome } from './header.style'
-import { Text, Button } from '../../components'
+import { Header } from './header.style'
+import { Button } from '../../components'
 import { Dimensions } from "../../utils";
 import { useHistory } from "react-router-dom";
 import { Colors } from '../../styles';
@@ -17,6 +17,12 @@ const Container = () => {
     <Header width={width} >
       <Button 
         name={"IMDB"} 
+        background={Colors.Black}
+        onClick={onClick}
+      />
+      <Button 
+        name={"Browse Movies"} 
+        color={Colors.SoftGray}
         background={Colors.Black}
         onClick={onClick}
       />

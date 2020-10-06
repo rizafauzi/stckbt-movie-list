@@ -1,14 +1,16 @@
 import React from 'react'
-import { Container, ImageContainer, Image, Hover, Wrapper, Background } from './card.style'
 import { Text, Button, Loader } from '../../components'
-import { Colors } from '../../styles'
+import { Container, ImageContainer, Image, Hover, Wrapper, Background } from './card.style'
 
 const Card = (props) => {
   const {
     data,
     detail,
+    hideDetail,
+    onShowModal,
     onViewDetail
   } = props
+
   return (
     <Container>
       <ImageContainer>
@@ -16,22 +18,28 @@ const Card = (props) => {
         <Loader width={'30vh'} height={'400px'}  /> : 
         data.Poster === "N/A" ? 
         <Loader width={'30vh'} height={'400px'}  /> :
-        <Image onError={} src={data.Poster} alt="Logo" /> 
+        <Image src={data.Poster} alt="Logo" /> 
         }
-        {!detail && <Hover>
+        {!detail && 
+        <Hover>
           <Background />
-          <Wrapper>
+          <Wrapper
+            onClick={() => onShowModal(data)}
+          >
             <Text align="left" size={20} bold>
               {data ? data.Type.toUpperCase() : ""}
             </Text>
             <Button
+              shadow
               onClick={() => onViewDetail(data || "")}
               name={'View Detail'}
             ></Button>
           </Wrapper>
         </Hover>}
       </ImageContainer>
-      {data ? 
+      {!hideDetail && 
+      <div>
+        {data ? 
         <Text align="left" size={20} bold>
           {data.Title}
         </Text> : 
@@ -46,6 +54,9 @@ const Card = (props) => {
           <Loader width={'15vh'} height={'20px'}  />
         </div>
       }
+      </div>
+      }
+      
       
     </Container>
   )

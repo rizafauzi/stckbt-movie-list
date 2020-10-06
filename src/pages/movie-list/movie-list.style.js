@@ -61,3 +61,36 @@ export const Subheader = styled.div`
 	align-items: flex-start;
 	justify-content: flex-start;
 `
+
+export const Image = styled.img`
+	opacity: 1;
+	width: 85%;
+	height: 100%;
+	border: 5px solid ${Colors.Green};
+	object-fit: cover;
+	border-radius: 15px;
+` 
+
+export const ModalContent = styled.div`
+	width: 500px;
+	height: 700px;
+	display: flex;
+  flex-direction: row;
+	align-items: flex-start;
+	justify-content: space-between;
+` 
+
+export const CloseButton = styled.button`
+	width: 50px;
+	border: none;
+	height: 50px;
+	outline: none;
+	display: flex;
+	cursor: pointer;
+	border-radius: 75px;
+  flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	background: ${Colors.White};
+` 
+

@@ -8,6 +8,7 @@ export const InputStyle = styled.input`
   border-bottom-width: 1px;
   border-bottom-color: ${Colors.Green};
   color: ${Colors.White};
+  padding-bottom: 10px;
   font-family: 'Raleway', sans-serif;
   font-size: ${(p) => (p.size ? p.size : Fonts.Medium)}px;
   &:focus {

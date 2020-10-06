@@ -21,7 +21,7 @@ export const Content = styled.div`
 
 export const Wrapper = styled.div`
 	width: 100%;
-	height: 93vh;
+	/* height: 93vh; */
   display: flex;
 	position: absolute;
 	align-items: flex-start;
@@ -36,7 +36,7 @@ export const Gradient = styled.div`
 	align-items: flex-start;
 	justify-content: center;
 	backdrop-filter: blur(10px);
-	background-image: linear-gradient(180deg, rgba(30,30,30,0.8), rgba(30,30,30,1), rgba(30,30,30,1));
+	background-image: linear-gradient(180deg, rgba(30,30,30,0.7), rgba(30,30,30,1), rgba(30,30,30,1));
 `
 
 export const ImageBg = styled.img`
@@ -72,7 +72,6 @@ export const Description = styled.div`
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: flex-start;
-	/* background: ${Colors.Green}; */
 `
 
 export const Divider = styled.div`
@@ -90,7 +89,6 @@ export const Tuple = styled.div`
 	flex-direction: row;
 	align-items: flex-start;
 	justify-content: flex-start;
-	/* background: ${Colors.Bronze}; */
 `
 
 export const Key = styled.div`
