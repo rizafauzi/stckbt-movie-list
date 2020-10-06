@@ -1,4 +1,5 @@
 export default {
-  SET_INITIAL: 'SET_INITIAL',
   SET_DATA: 'SET_DATA',
+  CLEAN_DATA: 'CLEAN_DATA',
+  SET_INITIAL: 'SET_INITIAL',
 }

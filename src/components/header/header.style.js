@@ -7,8 +7,8 @@ export const Header = styled.div`
 	height: 7vh;
 	display: flex;
 	align-items: center;
-	justify-content: center;
 	background: ${Colors.MidGray};
+	justify-content: space-between;
 	width: ${(props) => props.width}px;
 	border-bottom: 0.5px solid ${Colors.Gray};
 `

@@ -10,5 +10,5 @@ font-weight: ${(p) => (p.bold ? 600 : 400)};
 text-align: ${(p) => (p.align ? p.align : "left")};
 color: ${(p) => (p.color ? p.color : Colors.White)};
 font-size: ${(p) => (p.size ? p.size : Fonts.Medium)}px;
-line-height: ${(p) => (p.lineHeight ? p.lineHeight : '100%')};  
+line-height: ${(p) => (p.lineHeight ? p.lineHeight : '140%')};  
 `;

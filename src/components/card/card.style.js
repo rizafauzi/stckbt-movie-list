@@ -20,7 +20,7 @@ export const Hover = styled.div`
 	border: 5px solid ${Colors.Green};
 `
 
-export const Background = styled.div`
+export const Background = styled.button`
 	width: 100%;
 	height: 100%;
 	position: absolute;
@@ -37,6 +37,7 @@ export const Wrapper = styled.div`
 	align-items: center;
 	flex-direction: column;
 	justify-content: space-around;
+	cursor: pointer;
 `
 
 export const ImageContainer = styled.div`
