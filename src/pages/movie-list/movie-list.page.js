@@ -89,7 +89,6 @@ const MovieList = () => {
   const fetchDetailData = async (payload) => {
     try {
       const result = await APIKit.get(`?apikey=${API_KEY}&i=${payload.imdbID}&plot=short`)
-      console.log('result: ', result)
       if(result.data) {
         dispatch({
           type: DETAIL_ACTION.SET_DATA,
