@@ -147,6 +147,12 @@ const MovieList = () => {
     fetchData(1)
   }
 
+  const onEnterKeyPressed = (event) => {
+    if(event.key === 'Enter') {
+      onSearch()
+    }
+  }
+
   const onViewDetail = (payload) => {
     dispatch({ 
       type: DETAIL_ACTION.SET_INITIAL,
@@ -207,6 +213,7 @@ const MovieList = () => {
       <SearchContainer width={width} >
         <TextInput
           width={'50vh'}
+          onKeyPressed={onEnterKeyPressed}
           value={searchInput}
           placeholder="Search Movies"
           onChangeText={onChangeText} 

@@ -1,13 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import APIKit from '../../api'
 import { Fonts } from '../../styles'
 import { Header, Text, Card } from '../../components'
 import { Container, Content, Description, Divider, Tuple, Key, Value, Gradient, ImageBg, Wrapper } from './movie-detail.style'
-
-import { DETAIL_ACTION } from '../../actions'
-
 
 const MovieDetail = () => {
   const dispatch = useDispatch()
@@ -16,24 +12,6 @@ const MovieDetail = () => {
   useEffect(() => {
   }, [dataState])
 
-  // useEffect(() => {
-  //   fetchData()
-  // }, [])
-
-  //HANDLER ==========================================================================================================================
-
-  const fetchData = async () => {
-    console.log(`?apikey=faf7e5bb&i=${dataState.imdbID}&plot=full`)
-    const result = await APIKit.get(`?apikey=faf7e5bb&i=${dataState.imdbID}&plot=short`)
-    console.log('result: ', result)
-    if(result.data) {
-      console.log(result.data)
-      dispatch({
-        type: DETAIL_ACTION.SET_DATA,
-        payload: result.data
-      })
-    }
-  }
 
   //RENDER ===========================================================================================================================
 
