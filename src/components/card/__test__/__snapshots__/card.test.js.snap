@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it matches snapshot 1`] = `
+<div
+  className="sc-kEqYlL eYloQa"
+  data-testid="card"
+>
+  <div
+    className="sc-bqGHjH RYUa"
+  >
+    <img
+      alt="Logo"
+      className="sc-ksluoS fRYgfx"
+      src="https://m.media-amazon.com/images/M/MV5BYThjYzcyYzItNTVjNy00NDk0LTgwMWQtYjMwNmNlNWJhMzMyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"
+    />
+    <div
+      className="sc-iqAbSa cjgjuD"
+    >
+      <button
+        className="sc-crzoUp jNUkwQ"
+      />
+      <div
+        className="sc-dIsAE gWpIU"
+        onMouseUp={[Function]}
+      >
+        <h1
+          className="sc-bdnylx cmzHvD"
+          data-testid="text"
+          size={20}
+        >
+          MOVIE
+        </h1>
+        <button
+          className="sc-gKAblj bmcNPv"
+          data-testid="button"
+          onMouseDown={[Function]}
+          width="150px"
+        >
+          View Detail
+        </button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h1
+      className="sc-bdnylx cmzHvD"
+      data-testid="text"
+      size={20}
+    >
+      Batman v Superman: Dawn of Justice
+    </h1>
+    <h1
+      className="sc-bdnylx fdCiIW"
+      data-testid="text"
+      size={18}
+    >
+      2016
+    </h1>
+  </div>
+</div>
+`;

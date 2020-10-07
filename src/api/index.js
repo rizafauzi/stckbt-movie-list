@@ -1,8 +1,9 @@
 import axios from 'axios'
-// import { API_ENDPOINT } from '@env'
+
+const API_ENDPOINT = "http://www.omdbapi.com"
 
 let APIKit = axios.create({
-  baseURL: "http://www.omdbapi.com",
+  baseURL: API_ENDPOINT,
   timeout: 10000,
 })
 

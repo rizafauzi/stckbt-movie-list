@@ -13,16 +13,12 @@ const MovieDetail = () => {
   const dispatch = useDispatch()
   const dataState = useSelector((state) => state.detail)
 
-  const onViewDetail = (payload) => {
-    console.log('payload: ', payload)
-  }
-  
   useEffect(() => {
   }, [dataState])
 
-  useEffect(() => {
-    fetchData()
-  }, [])
+  // useEffect(() => {
+  //   fetchData()
+  // }, [])
 
   //HANDLER ==========================================================================================================================
 
@@ -63,10 +59,9 @@ const MovieDetail = () => {
         <Wrapper>
           <div>
             <Card
-              detail
               hideDetail
               data={dataState}
-              onViewDetail={onViewDetail}
+              disable_action
             />
             <div style={{margin: '3vh'}}>
               {Tuples('Rated', dataState.Rated)} 

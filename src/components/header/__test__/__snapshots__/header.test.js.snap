@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it matches snapshot 1`] = `
+<div
+  className="sc-bdnylx eyOEWn"
+  width={1024}
+>
+  <button
+    className="sc-dIsAE hOUMbN"
+    data-testid="button"
+    onClick={[Function]}
+  >
+    IMDB
+  </button>
+  <button
+    className="sc-dIsAE kEwta-d"
+    color="#808080"
+    data-testid="button"
+    onClick={[Function]}
+  >
+    Browse Movies
+  </button>
+</div>
+`;

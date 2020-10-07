@@ -1,5 +1,6 @@
 import { MOVIE_ACTION } from '../actions'
 const initialState = {
+  searchInput: "Superman",
   rows: [],
   count: 0
 }
@@ -19,7 +20,13 @@ export default (state = initialState, action) => {
     case MOVIE_ACTION.CLEAN_DATA:
       return {
         rows: [],
-        count: 0
+        count: 0,
+        searchInput: state.searchInput,
+      }
+    case MOVIE_ACTION.SET_SEARCH_INPUT:
+      return {
+        ...state,
+        searchInput: action.payload
       }
     default:
       return state
