@@ -26,7 +26,6 @@ const Card = (props) => {
           <Background />
           <Wrapper
             onMouseUp={() => {
-              console.log('detailLoading: ', detailLoading)
               if(!disable_action && !detailLoading) {
                 onShowModal(data)
               }

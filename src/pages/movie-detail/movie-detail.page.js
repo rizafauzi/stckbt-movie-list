@@ -7,33 +7,7 @@ import { Container, Content, Description, Divider, Tuple, Key, Value, Gradient, 
 
 const MovieDetail = () => {
   const dataState = useSelector((state) => state.detail)
-  // const dataState = {
-  //   DVD :"N/A",
-  //   Plot :"Fearing that the actions of Superman are left unchecked, Batman takes on the Man of Steel, while the world wrestles with what kind of a hero it really needs.",
-  //   Rated :"PG-13",
-  //   Genre :"Action, Adventure, Sci-Fi",
-  //   Writer :"Chris Terrio, David S. Goyer, Bob Kane (Batman created by), Bill Finger (Batman created by), Jerry Siegel (Superman created by), Joe Shuster (Superman created by), William Moulton Marston (character created by: Wonder Woman)",
-  //   Actors :"Ben Affleck, Henry Cavill, Amy Adams, Jesse Eisenberg",
-  //   Awards :"14 wins & 33 nominations.",
-  //   Country :"USA",
-  //   Website :"N/A",
-  //   Runtime :"152 min",
-  //   Response :"True",
-  //   Released :"25 Mar 2016",
-  //   Director :"Zack Snyder",
-  //   Language :"English",
-  //   Metascore :"44",
-  //   imdbVotes :"614,557",
-  //   BoxOffice :"N/A",
-  //   Production :"Syncopy, Atlas Entertainment, Warner Bros., Cruel and Unusual, DC Entertainment",
-  //   imdbRating :"6.4",
-  //   Type :"movie",
-  //   Year :"2016",
-  //   Title :"Batman v Superman: Dawn of Justice",
-  //   Poster :"https://m.media-amazon.com/images/M/MV5BYThjYzcyYzItNTVjNy00NDk0LTgwMWQtYjMwNmNlNWJhMzMyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
-  //   imdbID :"tt2975590"
-  // }
-
+  
   useEffect(() => {
   }, [dataState])
 
@@ -79,8 +53,10 @@ const MovieDetail = () => {
             <Text size={Fonts.ExtraSmall} >{dataState.Plot}</Text>
             <Divider />
             <Text bold size={Fonts.Large} >Ratings</Text>
-            {dataState.Ratings && dataState.Ratings.length > 0 && dataState.Ratings.map(dt => 
-              Tuples(dt.Source, dt.Value)
+            {dataState.Ratings && dataState.Ratings.length > 0 && dataState.Ratings.map((dt, index) => 
+              <div key={index} >
+                {Tuples(dt.Source, dt.Value)}
+              </div> 
             )} 
             {Tuples('IMB Votes', dataState.imdbVotes)}
             {Tuples('IMDB Rating', dataState.imdbRating)}
