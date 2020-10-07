@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Colors } from '../../styles'
 
 export const Container = styled.div`
-	width: 104%;
+	width: 100%;
 	display: flex;
 	margin-top: -10px;
   align-items: center;
@@ -29,7 +29,7 @@ export const Wrapper = styled.div`
 
 export const Gradient = styled.div`
   width: 100%;
-	height: 93vh;
+	height: 100%;
   display: flex;
 	position: absolute;
 	align-items: flex-start;
