@@ -1,6 +1,5 @@
 import axios from 'axios'
-
-const API_ENDPOINT = "http://www.omdbapi.com"
+import { API_ENDPOINT } from '../CONSTRAINT'
 
 let APIKit = axios.create({
   baseURL: API_ENDPOINT,

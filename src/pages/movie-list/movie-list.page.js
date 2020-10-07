@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from "react-router-dom";
-
+import { API_KEY } from '../../CONSTRAINT'
 
 import APIKit from '../../api'
 import { Dimensions } from "../../utils";
@@ -87,11 +87,8 @@ const MovieList = () => {
 
 
   const fetchDetailData = async (payload) => {
-    console.log('payload: ', payload)
-    console.log(`?apikey=faf7e5bb&i=${payload.imdbID}&plot=full`)
     try {
-      const result = await APIKit.get(`?apikey=faf7e5bb&i=${payload.imdbID}&plot=short`)
-      console.log('result: ', result)
+      const result = await APIKit.get(`?apikey=${API_KEY}&i=${payload.imdbID}&plot=short`)
       if(result.data) {
         dispatch({
           type: DETAIL_ACTION.SET_DATA,
@@ -107,7 +104,7 @@ const MovieList = () => {
   }
 
   const fetchData = async (page) => {
-    const result = await APIKit.get(`?apikey=faf7e5bb&s=${searchInput.split(" ").join("+")}&page=${page}`)
+    const result = await APIKit.get(`?apikey=${API_KEY}&s=${searchInput.split(" ").join("+")}&page=${page}`)
     if(result.data && result.data.Search) {
       const nextPage = pageFetch + 1
       setPageFetch(nextPage)
@@ -145,6 +142,12 @@ const MovieList = () => {
     setSearchTerm(searchInput)
     dispatch({ type: MOVIE_ACTION.CLEAN_DATA })
     fetchData(1)
+  }
+
+  const onEnterKeyPressed = (event) => {
+    if(event.key === 'Enter') {
+      onSearch()
+    }
   }
 
   const onViewDetail = (payload) => {
@@ -207,6 +210,7 @@ const MovieList = () => {
       <SearchContainer width={width} >
         <TextInput
           width={'50vh'}
+          onKeyPressed={onEnterKeyPressed}
           value={searchInput}
           placeholder="Search Movies"
           onChangeText={onChangeText} 
