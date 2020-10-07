@@ -10,7 +10,7 @@ const TextInput = (props) => {
     width,
     children, 
     onChangeText,
-    placeholder="asdasd"
+    placeholder="test"
   } = props;
   return (
     <InputStyle 
@@ -19,6 +19,7 @@ const TextInput = (props) => {
       value={text} 
       align={align} 
       width={width}
+      data-testid="text-input"
       onChange={onChangeText} 
       placeholder={placeholder} 
     >

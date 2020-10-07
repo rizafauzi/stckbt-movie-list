@@ -5,49 +5,75 @@ import { Container, ImageContainer, Image, Hover, Wrapper, Background } from './
 const Card = (props) => {
   const {
     data,
-    detail,
     hideDetail,
     onShowModal,
-    onViewDetail
+    onViewDetail,
+    detailLoading=false,
+    disable_action,
   } = props
 
   return (
-    <Container>
+    <Container data-testid="card">
       <ImageContainer>
         {!data ? 
-        <Loader width={'30vh'} height={'400px'}  /> : 
+        <Loader width={'30vh'} height={'400px'} /> : 
         data.Poster === "N/A" ? 
-        <Loader width={'30vh'} height={'400px'}  /> :
+        <Loader width={'30vh'} height={'400px'} /> :
         <Image src={data.Poster} alt="Logo" /> 
         }
-        {!detail && 
+        {!disable_action && data &&
         <Hover>
           <Background />
           <Wrapper
-            onClick={() => onShowModal(data)}
+            onMouseUp={() => {
+              console.log('detailLoading: ', detailLoading)
+              if(!disable_action && !detailLoading) {
+                onShowModal(data)
+              }
+            }}
           >
-            <Text align="left" size={20} bold>
+            <Text 
+              bold 
+              size={20} 
+              align="left" 
+              data-testid="text"
+            >
               {data ? data.Type.toUpperCase() : ""}
             </Text>
             <Button
               shadow
-              onClick={() => onViewDetail(data || "")}
-              name={'View Detail'}
-            ></Button>
+              zIndex={100}
+              width={'150px'}
+              onMouseDown={() => {
+                if(!disable_action && !detailLoading) {
+                  onViewDetail(data || "")
+                }
+              }}
+              name={detailLoading ? 'Loading...' : 'View Detail'}
+            />
           </Wrapper>
         </Hover>}
       </ImageContainer>
       {!hideDetail && 
       <div>
         {data ? 
-        <Text align="left" size={20} bold>
+        <Text 
+          bold 
+          size={20} 
+          align="left" 
+          data-testid="text"
+        >
           {data.Title}
         </Text> : 
         <Loader width={'20vh'} height={'20px'}  />
       }
       {
         data ?
-        <Text align="left" size={18}>
+        <Text 
+          size={18} 
+          align="left" 
+          data-testid="text"
+        >
           {data.Year || ""}
         </Text> :
         <div style={{ marginTop: 10 }}>

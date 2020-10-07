@@ -8,11 +8,12 @@ export const ButtonContainer = styled.button`
   outline: none;
   border-radius: 5px;
   font-weight: bold;
+	align-items: center;
 	flex-direction: column;
-	align-items: flex-start;
+  justify-content: center;
   padding: 5px 20px 5px 20px;
-  justify-content: flex-start;
   font-family: 'Raleway', sans-serif;
+  width: ${p => p.width ? p.width : 'auto'};
   font-size: ${(p) => (p.size ? p.size : 20)}px;
   color: ${(p) => (p.color ? p.color : Colors.White)};
   background: ${(p) => (p.background ? p.background : Colors.Green)};

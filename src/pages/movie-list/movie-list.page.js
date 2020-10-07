@@ -27,25 +27,39 @@ const MovieList = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const { width } = Dimensions()
+  
 
   const dataState = useSelector((state) => state.movie.rows)
   const rowCount = useSelector((state) => state.movie.count)
-
+  const searchInput = useSelector((state) => state.movie.searchInput)
   
-  const loadData = Array.apply(null, Array(4))
   const [pageFetch, setPageFetch] = useState(1)
   const [showModal, setShowModal] = useState(false)
   const [splitContent, setSplitContent] = useState(2)
   const [splitLoading, setSplitLoading] = useState(2)
   const [selectedPoster, setSelectedPoster] = useState("")
   const [searchTerm, setSearchTerm] = useState("Superman")
-  const [searchInput, setSearchInput] = useState("Superman")
+  const [splitCard, setSplitCard] = useState(4)
+  const [detailLoading, setDetailLoading] = useState(false)
   const [paging, setPaging] = useState({
     skip: 0,
     take: 8
   })
 
+  const loadData = Array.apply(null, Array(splitCard))
+
   useEffect(() => {
+    if(width < 1000) {
+      setSplitCard(2)
+    } else if (width < 1400) {
+      setSplitCard(3)
+    } else {
+      setSplitCard(4)
+    }
+  }, [width])
+
+  useEffect(() => {
+    setSearchTerm(searchInput)
     dispatch({ type: MOVIE_ACTION.CLEAN_DATA })
     fetchData(pageFetch)
   }, [])
@@ -60,7 +74,7 @@ const MovieList = () => {
   useEffect(() => {
     const nextSkip = paging.take
     const nextTake = paging.take + 8
-    const nextSplit = Math.ceil(dataState.length / 4)
+    const nextSplit = Math.ceil(dataState.length / splitCard)
     setSplitContent(nextSplit)
     setPaging({
       skip: nextSkip,
@@ -68,37 +82,33 @@ const MovieList = () => {
     })
   }, [dataState])
 
-  //HANDLER ==========================================================================================================================
+  //FETCH DATA =======================================================================================================================
 
-  const onChangeText = (payload) => {
-    setSearchInput(payload.target.value)
-  }
 
-  const onSearch = () => {
-    setSplitLoading(2)
-    setSearchTerm(searchInput)
-    dispatch({ type: MOVIE_ACTION.CLEAN_DATA })
-    fetchData(1)
-  }
 
-  const onViewDetail = (payload) => {
-    dispatch({ 
-      type: DETAIL_ACTION.SET_INITIAL,
-      payload: {
-        data: payload
+  const fetchDetailData = async (payload) => {
+    console.log('payload: ', payload)
+    console.log(`?apikey=faf7e5bb&i=${payload.imdbID}&plot=full`)
+    try {
+      const result = await APIKit.get(`?apikey=faf7e5bb&i=${payload.imdbID}&plot=short`)
+      console.log('result: ', result)
+      if(result.data) {
+        dispatch({
+          type: DETAIL_ACTION.SET_DATA,
+          payload: result.data
+        })
+
+        setDetailLoading(false)
+        history.push('movie-detail');
       }
-    })
-    history.push('movie-detail');
-  }
-
-  const onShowModal = (data) => {
-    setSelectedPoster(data ? data.Poster : '')
-    setShowModal(true)
+    } catch (err) {
+      console.log('Error Occured')
+    }
   }
 
   const fetchData = async (page) => {
     const result = await APIKit.get(`?apikey=faf7e5bb&s=${searchInput.split(" ").join("+")}&page=${page}`)
-    if(result.data) {
+    if(result.data && result.data.Search) {
       const nextPage = pageFetch + 1
       setPageFetch(nextPage)
       
@@ -117,8 +127,42 @@ const MovieList = () => {
           data: result.data.Search
         }
       })
-
       setSplitLoading(1)
+    }
+  }
+
+  //HANDLER ==========================================================================================================================
+
+  const onChangeText = (payload) => {
+    dispatch({
+      type: MOVIE_ACTION.SET_SEARCH_INPUT,
+      payload: payload.target.value
+    })
+  }
+
+  const onSearch = () => {
+    setSplitLoading(2)
+    setSearchTerm(searchInput)
+    dispatch({ type: MOVIE_ACTION.CLEAN_DATA })
+    fetchData(1)
+  }
+
+  const onViewDetail = (payload) => {
+    dispatch({ 
+      type: DETAIL_ACTION.SET_INITIAL,
+      payload: {
+        data: payload
+      }
+    })
+    
+    setDetailLoading(true)
+    fetchDetailData(payload)
+  }
+
+  const onShowModal = (data) => {
+    if(!detailLoading) {
+      setSelectedPoster(data ? data.Poster : '')
+      setShowModal(true)
     }
   }
 
@@ -193,11 +237,13 @@ const MovieList = () => {
         <Divider />
 
         {Array.apply(null, Array(splitContent)).map((_, index) =>
-          <CardContainer>
-            {dataState.slice(index * 4, (index + 1) * 4 ).map((data, index) => 
+          <CardContainer key={index}>
+            {dataState.slice(index * splitCard, (index + 1) * splitCard ).length === splitCard && 
+            dataState.slice(index * splitCard, (index + 1) * splitCard ).map((data, index) => 
               <div key={index}>
                 <Card
                   data={data}
+                  detailLoading={detailLoading}
                   onShowModal={onShowModal}
                   onViewDetail={onViewDetail}
                 />
@@ -205,8 +251,8 @@ const MovieList = () => {
             )}
           </CardContainer>
         )}
-        {Array.apply(null, Array(splitLoading)).map(() =>
-          <CardContainer>
+        {Array.apply(null, Array(splitLoading)).map((_, index) =>
+          <CardContainer key={index}>
           {loadData.map((data, index) => 
             <div key={index}>
               <Card
