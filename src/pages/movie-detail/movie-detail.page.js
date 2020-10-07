@@ -14,9 +14,9 @@ const MovieDetail = () => {
 
   //RENDER ===========================================================================================================================
 
-  const Tuples = (key, value) => {
+  const Tuples = (key, value, index) => {
     return (
-      <Tuple>
+      <Tuple key={index} >
         <Key>
           <Text bold size={Fonts.ExtraSmall} >{key}</Text>
         </Key>
@@ -54,9 +54,7 @@ const MovieDetail = () => {
             <Divider />
             <Text bold size={Fonts.Large} >Ratings</Text>
             {dataState.Ratings && dataState.Ratings.length > 0 && dataState.Ratings.map((dt, index) => 
-              <div key={index} >
-                {Tuples(dt.Source, dt.Value)}
-              </div> 
+              Tuples(dt.Source, dt.Value, index)
             )} 
             {Tuples('IMB Votes', dataState.imdbVotes)}
             {Tuples('IMDB Rating', dataState.imdbRating)}
